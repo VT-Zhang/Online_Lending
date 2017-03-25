@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Lending App</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <style>
+   .red{
+       color:red;
+   }
+   .green{
+       color:green;
+   }
+ </style>
+</head>
+<body>
+    <div id="message">
+        <% if flash[:errors] %>
+            <% flash[:errors].each do |e| %>
+                <p class="red"><%= e %></p>
+            <% end %>
+        <% end %>
+
+        <% if flash[:notices] %>
+            <% flash[:notices].each do |notice| %>
+                <p class="green"><%= notice %></p>
+            <% end %>
+        <% end %>
+    </div>
+    <% if session[:user_id] != nil %>
+    <div id="logout">
+        <a href="/sessions/destroy" data-method="delete">Logout</a>
+    </div>
+    <% end %>
+    <%= yield %>
+</body>
+</html>

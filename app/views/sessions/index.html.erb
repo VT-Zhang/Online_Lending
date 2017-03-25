@@ -1,0 +1,83 @@
+<style>
+#title{
+    text-align: center;
+}
+ #wrapper{
+    height:500px;
+    width: 800px;
+    border-style: 1px black;
+    border-style: solid;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+#left{
+    width:300px;
+    margin-left: 100px;
+}
+
+#right{
+    width:300px;
+}
+</style>
+
+<h1 id="title">The Online Lending App</h1>
+<div id="wrapper">
+    <div id="left">
+        <h2>Lender</h2>
+        <form action="/lenders/create" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <p>First Name: <input type="text" name="lender_first_name" /></p>
+            <p>Last Name: <input type="text" name="lender_last_name" /></p>
+            <p>Email: <input type="text" name="lender_email" /></p>
+            <p>Password: <input type="password" name="lender_password" /></p>
+            <p>Confirm PW: <input type="password" name="lender_password_confirmation" /></p>
+            <p>Money: <select name="lender_money">
+                <option value="100">$100</option>
+                <option value="500">$500</option>
+                <option value="1000">$1000</option>
+                <option value="2000">$2000</option>
+                <option value="3000">$3000</option>
+                <option value="4000">$4000</option>
+                <option value="5000">$5000</option>
+                <option value="6000">$6000</option>
+                <option value="7000">$7000</option>
+                <option value="8000">$8000</option>
+                <option value="9000">$9000</option>
+                <option value="10000">$10000</option>
+            </select></p>
+            <input type="submit" value="Register" id="lender_register" />
+        </form>
+        <br />
+        <a href="/login">Already a member?</a>
+    </div>
+
+    <div id="right">
+        <h2>Borrower</h2>
+        <form action="/borrowers/create" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <p>First Name: <input type="text" name="borrower_first_name" /></p>
+            <p>Last Name: <input type="text" name="borrower_last_name" /></p>
+            <p>Email: <input type="text" name="borrower_email" /></p>
+            <p>Password: <input type="password" name="borrower_password" /></p>
+            <p>Confirm PW: <input type="password" name="borrower_password_confirmation" /></p>
+            <p>Need Money for: <input type="text" name="borrower_purpose" /></p>
+            <p><textarea name="borrower_discription" rows="6" cols="50">Add Your Description Here...</textarea></p>
+            <p>Amount Needed: <select name="borrower_money">
+                <option value="100">$100</option>
+                <option value="200">$200</option>
+                <option value="300">$300</option>
+                <option value="400">$400</option>
+                <option value="500">$500</option>
+                <option value="1000">$1000</option>
+                <option value="2000">$2000</option>
+                <option value="3000">$3000</option>
+                <option value="5000">$5000</option>
+            </select></p>
+            <input type="submit" value="Register" id="borrower_register" />
+        </form>
+        <br />
+        <a href="/login">Already a member?</a>
+    </div>
+</div>

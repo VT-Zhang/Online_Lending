@@ -1,0 +1,33 @@
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+</style>
+
+<h3>Name: <%= current_borrower.first_name %> <%= current_borrower.last_name %></h3>
+<h3>Amount Need: $<%= current_borrower.money %></h3>
+<h3>Amount Raised: $<%= current_borrower.raised %></h3>
+<br />
+<h3>List of people who lent you money:</h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Amount Lent</th>
+  </tr>
+  <% if @lenders %>
+  <% @lenders.each do |lender| %>
+  <tr>
+      <% if current_borrower.lenders.exists?(lender) %>
+      <td><%=lender.first_name%> <%=lender.last_name%></td>
+      <td><%=lender.email%></td>
+      <td>$<%=lender.histories.where(borrower: current_borrower).sum(:amount)%></td>
+  </tr>
+  <% end %>
+  <% end %>
+  <% end %>
+</table>
